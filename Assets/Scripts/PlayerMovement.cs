@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy Head"))
         {
-            Debug.Log("Hit Enemy");
             Destroy(collision.transform.parent.gameObject);
             Jump();
         }
