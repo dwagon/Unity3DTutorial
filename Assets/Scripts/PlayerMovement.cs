@@ -39,4 +39,14 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics.CheckSphere(groundCheck.position, 0.1f, ground);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy Head"))
+        {
+            Debug.Log("Hit Enemy");
+            Destroy(collision.transform.parent.gameObject);
+            Jump();
+        }
+    }
 }
