@@ -11,6 +11,10 @@ public class PlayerLife : MonoBehaviour
     {
         if (transform.position.y < -5.0f && !dead)
         {
+            if (transform.childCount > 0)
+            {
+                transform.GetChild(0).SetParent(null);
+            }
             Die();
         }
     }
@@ -19,6 +23,9 @@ public class PlayerLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy Body"))
         {
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<PlayerMovement>().enabled = false;
             Die();
         }
     }
@@ -26,9 +33,6 @@ public class PlayerLife : MonoBehaviour
     void Die()
     {
         dead = true;
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<PlayerMovement>().enabled = false;
         Invoke(nameof(ReloadLevel), 1.3f);
 
     }
