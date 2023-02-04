@@ -7,6 +7,7 @@ public class ItemCollector : MonoBehaviour
 {
     int coins = 0;
     [SerializeField] TextMeshProUGUI coinsText;
+    [SerializeField] AudioSource collectSound;
 
 
     private void OnTriggerEnter(Collider other)
@@ -16,6 +17,7 @@ public class ItemCollector : MonoBehaviour
             Destroy(other.gameObject);
             coins++;
             coinsText.text = "Coins: " + coins;
+            collectSound.Play();
         }
     }
 }

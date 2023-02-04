@@ -11,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
 
+    [SerializeField] AudioSource jumpSound;
+
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();    
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        jumpSound.Play();
     }
 
     bool IsGrounded()
